@@ -19,8 +19,11 @@ var actualCode = '(' + function() {
       $(window).trigger("resize");
     })
   }
-  $(document).ajaxComplete(function() {
-    subMenuHider()
+  $(document).ajaxComplete(function(event, xhr, settings) {
+    if (settings.url.indexOf("/groups") > -1 ||
+        settings.url.indexOf("/api/tags") > -1) {
+          subMenuHider()
+        }
   });
 } + ')();';
 var script = document.createElement('script');
